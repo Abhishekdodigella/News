@@ -1,0 +1,26 @@
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import RegisterForm from '../components/auth/RegisterForm';
+import { useAuth } from '../context/AuthContext';
+
+const RegisterPage: React.FC = () => {
+  const { isAuthenticated } = useAuth();
+  
+  // Redirect if already logged in
+  if (isAuthenticated) {
+    return <Navigate to="/" />;
+  }
+  
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Create an Account</h1>
+        <p className="text-gray-600">Join NewsHub for a personalized news experience</p>
+      </div>
+      
+      <RegisterForm />
+    </div>
+  );
+};
+
+export default RegisterPage;
